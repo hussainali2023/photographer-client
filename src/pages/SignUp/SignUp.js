@@ -1,10 +1,11 @@
 import React, { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthProvider";
 // import { AuthContext } from "../../contexts/AuthProvider";
 
 const SignUp = () => {
   const { createUser } = useContext(AuthContext);
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -18,6 +19,8 @@ const SignUp = () => {
         // Signed in
         const user = userCredential.user;
         console.log(user);
+        alert("Congratulations You are successfully Registered");
+        form.reset();
         // ...
       })
       .catch((error) => {

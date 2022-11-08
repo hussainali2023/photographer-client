@@ -1,8 +1,11 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../contexts/AuthProvider";
 
 const Header = () => {
   const [navbar, setNavbar] = useState(false);
+  const { user, logOut } = useContext(AuthContext);
+  console.log(user);
   // const { user, logOut } = useContext(AuthContext);
 
   // const handleLogOut = () => {
@@ -13,6 +16,10 @@ const Header = () => {
   //   // swal()
   //   toast(`${user?.displayName}`);
   // };
+
+  const handleLogOut = () => {
+    logOut().then().catch();
+  };
 
   return (
     <div>
@@ -77,16 +84,31 @@ const Header = () => {
                 <li className="text-gray-600 hover:text-blue-600">
                   <Link to={"/blogs"}>Blogs</Link>
                 </li>
-                <li className="text-gray-600 hover:text-blue-600">
-                  <Link to={"/login"}>
-                    <button className=" bg-violet-400 px-6 py-2 text-white font-semibold rounded-md">
-                      Login
+                {user?.uid ? (
+                  <>
+                    <li className="text-gray-600 hover:text-blue-600">
+                      <Link to={"/my-reviews"}>My Reviews</Link>
+                    </li>
+                    <li className="text-gray-600 hover:text-blue-600">
+                      <Link to={"/add-service"}>Add Services</Link>
+                    </li>
+
+                    <button
+                      onClick={handleLogOut}
+                      className=" bg-violet-400 px-6 py-2 text-white font-semibold rounded-md"
+                    >
+                      Logout
                     </button>
-                  </Link>
-                </li>
-                {/* <li className="flex align-middle">
-                  <DarkMode></DarkMode>
-                </li> */}
+                  </>
+                ) : (
+                  <li className="text-gray-600 hover:text-blue-600">
+                    <Link to={"/login"}>
+                      <button className=" bg-violet-400 px-6 py-2 text-white font-semibold rounded-md">
+                        Login
+                      </button>
+                    </Link>
+                  </li>
+                )}
               </ul>
             </div>
           </div>
