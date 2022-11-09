@@ -6,7 +6,7 @@ import Review from "../Review/Review";
 const DetailsPage = () => {
   const service = useLoaderData();
   const { user } = useContext(AuthContext);
-  console.log(service);
+  //   console.log(service);
   return (
     <div className=" mt-4 grid grid-cols-2 gap-4">
       <div className="course-details ml-10">
