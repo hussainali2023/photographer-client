@@ -10,48 +10,6 @@ const Login = () => {
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
 
-  // const googleProvider = new GoogleAuthProvider();
-  // const githubProvider = new GithubAuthProvider();
-
-  // const handleGoogleSignIn = () => {
-  //   providerLogin(googleProvider)
-  //     .then((result) => {
-  //       const user = result.user;
-  //       console.log(user);
-  //       swal("Good Job", "successfuly Login", "success");
-  //       navigate(from, { replace: true });
-  //       // ...
-  //     })
-  //     .catch((error) => {
-  //       // Handle Errors here.
-  //       const errorCode = error.code;
-  //       const errorMessage = error.message;
-  //       swal("Sorry!", errorMessage, "error");
-  //       // The email of the user's account used.
-
-  //       // ...
-  //     });
-  // };
-
-  // const handleGithubSignIn = () => {
-  //   providerLogin(githubProvider)
-  //     .then((result) => {
-  //       const user = result.user;
-  //       console.log(user);
-  //       swal("Good Job", "successfuly Login", "success");
-  //       navigate(from, { replace: true });
-  //       // ...
-  //     })
-  //     .catch((error) => {
-  //       // Handle Errors here.
-  //       const errorCode = error.code;
-  //       const errorMessage = error.message;
-  //       swal("Sorry!", errorMessage, "error");
-  //       // The email of the user's account used.
-  //       // ...
-  //     });
-  // };
-
   const handleSignIn = (e) => {
     e.preventDefault();
     const form = e.target;

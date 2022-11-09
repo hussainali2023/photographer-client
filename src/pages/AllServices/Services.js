@@ -1,8 +1,9 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Service = ({ service }) => {
   //   console.log(service);
-  const { photo, serviceName, price, description } = service;
+  const { _id, photo, serviceName, price, description } = service;
   return (
     <div className="max-w-lg p-4 shadow-md dark:bg-gray-900 dark:text-gray-100 rounded-md">
       <div className="space-y-4">
@@ -23,6 +24,14 @@ const Service = ({ service }) => {
           <p className="leading-snug dark:text-gray-400">
             {description.slice(0, 100) + "..."}
           </p>
+        </div>
+        <div className=" flex justify-center mt-4">
+          <Link to={`/services/${_id}`}>
+            {" "}
+            <button className=" px-5 py-2 bg-violet-500 text-white font-semibold rounded-sm">
+              Show Details
+            </button>
+          </Link>
         </div>
       </div>
     </div>
