@@ -2,8 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { Link, useLoaderData } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthProvider";
 
-const Review = () => {
-  const service = useLoaderData();
+const Review = ({ service }) => {
   const { user } = useContext(AuthContext);
   const [users, setUsers] = useState({});
 
@@ -34,6 +33,14 @@ const Review = () => {
     console.log(newUsers);
     setUsers(newUsers);
   };
+
+  //   useEffect(() => {
+  //     fetch(`http://localhost:5000/reviews/${user?.email}`)
+  //       .then((res) => res.json())
+  //       .then((data) => setUsers(data));
+  //   }, [user?.email]);
+
+  console.log(users);
 
   return (
     <div>
@@ -155,13 +162,13 @@ const Review = () => {
           <div className="flex space-x-4">
             <div>
               <img
-                src={`photo`}
+                src={users.photo}
                 alt=""
                 className="object-cover w-12 h-12 rounded-full dark:bg-gray-500"
               />
             </div>
             <div>
-              <h4 className="font-bold">{/* user name  */}</h4>
+              <h4 className="font-bold">{users.name}</h4>
             </div>
           </div>
           <div className="flex items-center space-x-2 dark:text-yellow-500">
@@ -174,7 +181,7 @@ const Review = () => {
           </div>
         </div>
         <div className="p-4 space-y-2 text-sm dark:text-gray-400">
-          <p>{/* message  */}</p>
+          <p>{users.message}</p>
         </div>
       </div>
     </div>

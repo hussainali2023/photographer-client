@@ -34,7 +34,7 @@ const DetailsPage = () => {
         </div>
       </div>
       <div className="Review Section">
-        <Review></Review>
+        <Review service={service}></Review>
       </div>
     </div>
   );
