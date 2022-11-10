@@ -23,7 +23,7 @@ const Footer = () => {
               </svg>
             </div>
             <span className="self-center text-2xl font-semibold">
-              Brand name
+              Photo Review
             </span>
           </Link>
         </div>
@@ -51,23 +51,6 @@ const Footer = () => {
               <li>
                 <Link to={"/"} rel="noopener noreferrer" href="#">
                   FAQ
-                </Link>
-              </li>
-            </ul>
-          </div>
-          <div className="space-y-3">
-            <h3 className="tracking-wide uppercase dark:text-gray-50">
-              Company
-            </h3>
-            <ul className="space-y-1">
-              <li>
-                <Link to={"/"} rel="noopener noreferrer" href="#">
-                  Privacy
-                </Link>
-              </li>
-              <li>
-                <Link to={"/"} rel="noopener noreferrer" href="#">
-                  Terms of Service
                 </Link>
               </li>
             </ul>
@@ -147,7 +130,7 @@ const Footer = () => {
         </div>
       </div>
       <div className="py-6 text-sm text-center dark:text-gray-400">
-        © 1968 Company Co. All rights reserved.
+        © 2022 Photographer. All rights reserved.
       </div>
     </footer>
   );

@@ -31,7 +31,7 @@ const AddService = () => {
     setUser(newUser);
   };
   return (
-    <div className=" ml-10 mt-3">
+    <div className=" w-3/4 mx-auto mt-3 mb-8">
       <form
         onSubmit={handleSubmit}
         id="feedbackForm"

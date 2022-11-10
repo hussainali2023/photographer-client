@@ -42,7 +42,7 @@ const Review = ({ service }) => {
   console.log(`http:localhost:5000/reviews/${shortName}`);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/reviews/${shortName}`)
+    fetch(`http://localhost:5000/reviews/`)
       .then((res) => res.json())
       .then((data) => setReviews(data));
   }, [shortName]);
@@ -167,7 +167,7 @@ const Review = ({ service }) => {
       </div>
       <div>
         {reviews.map((review) => (
-          <div className="container flex flex-col w-full max-w-lg p-6 mx-auto divide-y rounded-md divide-gray-700 dark:bg-gray-900 dark:text-gray-100">
+          <div className="container mb-5 flex flex-col w-full max-w-lg p-6 mx-auto divide-y rounded-md divide-gray-700 dark:bg-gray-900 dark:text-gray-100">
             <div className="flex justify-between p-4">
               <div className="flex space-x-4">
                 <div>

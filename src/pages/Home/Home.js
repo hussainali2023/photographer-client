@@ -1,12 +1,23 @@
 import React from "react";
 import { Link, useLoaderData } from "react-router-dom";
 import Service from "../AllServices/Services";
+import Gallery from "../Gallery/Gallery";
 
 const Home = () => {
   const services = useLoaderData();
   // console.log(services);
   return (
     <>
+      <div>
+        <img
+          className=""
+          src="https://img.freepik.com/free-photo/young-asian-man-with-camera-isolated-white-background-photographer-concept_231208-3767.jpg?w=2000"
+          alt=""
+        />
+      </div>
+      <h1 className=" text-violet-500 text-2xl ml-6 font-bold">
+        Photographer Services:
+      </h1>
       <div className=" mx-4 my-4 grid grid-cols-1 md:grid-cols-3 gap-4">
         {services.map((service) => (
           <Service key={service._id} service={service}></Service>
@@ -18,6 +29,9 @@ const Home = () => {
             See All
           </button>
         </Link>
+      </div>
+      <div className="mt-8">
+        <Gallery></Gallery>
       </div>
     </>
   );

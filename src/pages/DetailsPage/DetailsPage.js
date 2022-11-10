@@ -34,6 +34,10 @@ const DetailsPage = () => {
         </div>
       </div>
       <div className="Review Section">
+        <h1 className="mb-4 text-2xl text-violet-500 font-bold">
+          {" "}
+          Please add a Review of this service
+        </h1>
         <Review service={service}></Review>
       </div>
     </div>

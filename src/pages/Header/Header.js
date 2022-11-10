@@ -28,7 +28,7 @@ const Header = () => {
           <div>
             <div className="flex items-center justify-between py-3 md:py-5 md:block">
               <Link to={"/"}>
-                <h2 className="text-2xl font-bold">Photographer</h2>
+                <h2 className="text-2xl font-bold">Photo Review</h2>
               </Link>
               <div className="md:hidden">
                 <button
