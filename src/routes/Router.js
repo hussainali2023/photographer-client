@@ -10,6 +10,7 @@ import Login from "../pages/Login/Login";
 import MyReviews from "../pages/MyReviews/MyReviews";
 import Review from "../pages/Review/Review";
 import SignUp from "../pages/SignUp/SignUp";
+import UpdateReview from "../pages/UpdateReview/UpdateReview";
 import PrivateRoute from "./PrivateRoute";
 
 export const router = createBrowserRouter([
@@ -20,18 +21,22 @@ export const router = createBrowserRouter([
       {
         path: "/",
         element: <Home></Home>,
-        loader: () => fetch("http://localhost:5000/services-home"),
+        loader: () =>
+          fetch("https://photographer-server-eta.vercel.app/services-home"),
       },
       {
         path: "/services",
         element: <AllServices></AllServices>,
-        loader: () => fetch("http://localhost:5000/services"),
+        loader: () =>
+          fetch("https://photographer-server-eta.vercel.app/services"),
       },
       {
         path: "/services/:id",
         element: <DetailsPage></DetailsPage>,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/services/${params.id}`),
+          fetch(
+            `https://photographer-server-eta.vercel.app/services/${params.id}`
+          ),
       },
       {
         path: "/blogs",
@@ -65,6 +70,16 @@ export const router = createBrowserRouter([
             <AddService></AddService>
           </PrivateRoute>
         ),
+      },
+      {
+        path: "/update",
+        element: (
+          <PrivateRoute>
+            <UpdateReview></UpdateReview>
+          </PrivateRoute>
+        ),
+        loader: () =>
+          fetch("https://photographer-server-eta.vercel.app/reviews"),
       },
     ],
   },

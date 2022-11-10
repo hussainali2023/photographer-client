@@ -1,39 +1,44 @@
-import React, { useState } from "react";
-import { DynamicTitle } from "../../DynamicTitle/DynamicTitle";
+import React, { useEffect, useState } from "react";
+import { useLoaderData } from "react-router-dom";
 
-const AddService = () => {
-  DynamicTitle("Add-Service");
-  const [user, setUser] = useState({});
+const UpdateReview = () => {
+  const reviews = useLoaderData();
+  const [users, setUsers] = useState([]);
+  const [review] = reviews;
+  console.log(review);
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    console.log(user);
-
-    fetch("https://photographer-server-eta.vercel.app/services", {
-      method: "POST",
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    fetch(`https://photographer-server-eta.vercel.app/reviews/${review._id}`, {
+      method: "PUT",
       headers: {
         "content-type": "application/json",
       },
-      body: JSON.stringify(user),
+      body: JSON.stringify(users),
     })
       .then((res) => res.json())
       .then((data) => {
-        if (data.acknowledged) {
-          alert("User added successfully");
-          event.target.reset();
+        if (data.modifiedCount > 0) {
+          alert("User updated");
+        } else {
+          alert("At least update one");
         }
+        console.log(data);
       });
   };
 
-  const handleInput = (event) => {
-    const field = event.target.name;
-    const value = event.target.value;
-    const newUser = { ...user };
-    newUser[field] = value;
-    setUser(newUser);
+  const handleInput = (e) => {
+    e.preventDefault();
+    const field = e.target.name;
+    const value = e.target.value;
+    const newUsers = { ...users };
+    newUsers[field] = value;
+    // console.log(newUsers);
+    setUsers(newUsers);
   };
+
   return (
-    <div className=" w-3/4 mx-auto mt-3 mb-8">
+    <div>
       <form
         onSubmit={handleSubmit}
         id="feedbackForm"
@@ -43,13 +48,14 @@ const AddService = () => {
       >
         <div className="mb-3">
           <label className="block uppercase text-gray-700 text-xs font-bold mb-2">
-            Service Name
+            Name
           </label>
           <input
+            defaultValue={review.name}
             onBlur={handleInput}
             type="text"
-            name="serviceName"
-            id="serviceName"
+            name="name"
+            id="name"
             className="border-0 px-3 py-3 rounded text-sm shadow w-3/4
                     bg-gray-300 placeholder-black text-gray-800 outline-none focus:bg-gray-400"
             placeholder=" "
@@ -58,13 +64,14 @@ const AddService = () => {
         </div>
         <div className="mb-3">
           <label className="block uppercase text-gray-700 text-xs font-bold mb-2">
-            Short Name
+            Email
           </label>
           <input
+            defaultValue={review.email}
             onBlur={handleInput}
-            type="text"
-            name="shortName"
-            id="shortName"
+            type="email"
+            name="email"
+            id="email"
             className="border-0 px-3 py-3 rounded text-sm shadow w-3/4
                     bg-gray-300 placeholder-black text-gray-800 outline-none focus:bg-gray-400"
             placeholder=" "
@@ -76,10 +83,11 @@ const AddService = () => {
             Photo URL
           </label>
           <input
+            defaultValue={review.photoURL}
             onBlur={handleInput}
             type="text"
-            name="photo"
-            id="photo"
+            name="photoURL"
+            id="photoURL"
             className="border-0 px-3 py-3 rounded text-sm shadow w-3/4
                     bg-gray-300 placeholder-black text-gray-800 outline-none focus:bg-gray-400"
             placeholder=" "
@@ -88,13 +96,14 @@ const AddService = () => {
         </div>
         <div className="mb-3">
           <label className="block uppercase text-gray-700 text-xs font-bold mb-2">
-            Price
+            Service Id
           </label>
           <input
+            defaultValue={review.serviceId}
             onBlur={handleInput}
             type="text"
-            name="price"
-            id="price"
+            name="serviceId"
+            id="serviceId"
             className="border-0 px-3 py-3 rounded text-sm shadow w-3/4
                     bg-gray-300 placeholder-black text-gray-800 outline-none focus:bg-gray-400"
             placeholder=" "
@@ -103,12 +112,13 @@ const AddService = () => {
         </div>
         <div className="mb-3">
           <label className="block uppercase text-gray-700 text-xs font-bold mb-2">
-            Description
+            Message
           </label>
           <textarea
+            defaultValue={review.message}
             onBlur={handleInput}
-            name="description"
-            id="description"
+            name="message"
+            id="feedback"
             className="border-0 px-3 py-3 bg-gray-300 placeholder-black text-gray-800 rounded text-sm shadow focus:outline-none w-3/4"
             placeholder=""
             required
@@ -120,7 +130,7 @@ const AddService = () => {
             className="bg-yellow-300 text-black text-center mx-auto active:bg-yellow-400 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none"
             type="submit"
           >
-            Add Service
+            Update
           </button>
         </div>
       </form>
@@ -128,4 +138,4 @@ const AddService = () => {
   );
 };
 
-export default AddService;
+export default UpdateReview;

@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthProvider";
 import { DynamicTitle } from "../../DynamicTitle/DynamicTitle";
 
@@ -10,7 +10,7 @@ const MyReviews = () => {
   console.log(reviews);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/reviews/${user?.email}`, {
+    fetch(`https://photographer-server-eta.vercel.app/reviews/${user?.email}`, {
       headers: {
         authorization: `Bearer ${localStorage.getItem("token")}`,
       },
@@ -20,7 +20,7 @@ const MyReviews = () => {
   }, [user?.email]);
 
   const handleDelete = (review) => {
-    fetch(`http://localhost:5000/reviews/${review._id}`, {
+    fetch(`https://photographer-server-eta.vercel.app/reviews/${review._id}`, {
       method: "DELETE",
     })
       .then((res) => res.json())
@@ -68,12 +68,12 @@ const MyReviews = () => {
                 </div>
               </div>
               <div className="mt-10">
-                <button
-                  review={review}
-                  className=" py-2 px-6 bg-violet-500 mb-4 font-bold text-white rounded-md"
-                >
-                  Update
-                </button>
+                <Link to={"/update"}>
+                  <button className=" py-2 px-6 bg-violet-500 mb-4 font-bold text-white rounded-md">
+                    Update
+                  </button>
+                </Link>
+
                 <br />
                 <button
                   onClick={() => handleDelete(review)}
