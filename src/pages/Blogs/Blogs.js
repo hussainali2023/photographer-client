@@ -1,6 +1,8 @@
 import React from "react";
+import { DynamicTitle } from "../../DynamicTitle/DynamicTitle";
 
 const Blog = () => {
+  DynamicTitle("Blog");
   return (
     <div>
       <section className="dark:bg-gray-800 dark:text-gray-100">

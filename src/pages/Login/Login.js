@@ -2,8 +2,11 @@ import { GoogleAuthProvider } from "firebase/auth";
 import React, { useContext } from "react";
 import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthProvider";
+import { DynamicTitle } from "../../DynamicTitle/DynamicTitle";
 
 const Login = () => {
+  DynamicTitle("Login");
+
   const { signInUser, googleSignIn } = useContext(AuthContext);
 
   const navigate = useNavigate();

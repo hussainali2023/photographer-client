@@ -39,7 +39,7 @@ const Review = ({ service }) => {
     setUsers(newUsers);
   };
 
-  console.log(`http:localhost:5000/reviews/${shortName}`);
+  // console.log(`http:localhost:5000/reviews/${shortName}`);
 
   useEffect(() => {
     fetch(`https://photographer-server-eta.vercel.app/reviews/`)
@@ -90,7 +90,6 @@ const Review = ({ service }) => {
                   className="border-0 px-3 py-3 rounded text-sm shadow w-3/4
                     bg-gray-300 placeholder-black text-gray-800 outline-none focus:bg-gray-400"
                   placeholder=" "
-                  readOnly
                   required
                 />
               </div>
@@ -167,7 +166,10 @@ const Review = ({ service }) => {
       </div>
       <div>
         {reviews.map((review) => (
-          <div className="container mb-5 flex flex-col w-full max-w-lg p-6 mx-auto divide-y rounded-md divide-gray-700 dark:bg-gray-900 dark:text-gray-100">
+          <div
+            key={review._id}
+            className=" container mb-5 flex flex-col w-full max-w-lg p-6 mx-auto divide-y rounded-md divide-gray-700 dark:bg-gray-900 dark:text-gray-100"
+          >
             <div className="flex justify-between p-4">
               <div className="flex space-x-4">
                 <div>

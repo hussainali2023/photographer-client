@@ -1,8 +1,7 @@
-import logo from "./logo.svg";
 import "./App.css";
-import Main from "./layout/Main";
 import { RouterProvider } from "react-router-dom";
 import { router } from "./routes/Router";
+import "react-photo-view/dist/react-photo-view.css";
 
 function App() {
   return (

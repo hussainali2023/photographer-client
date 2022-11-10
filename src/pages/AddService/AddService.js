@@ -1,6 +1,8 @@
 import React, { useState } from "react";
+import { DynamicTitle } from "../../DynamicTitle/DynamicTitle";
 
 const AddService = () => {
+  DynamicTitle("Add-Service");
   const [user, setUser] = useState({});
 
   const handleSubmit = (event) => {

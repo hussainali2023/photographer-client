@@ -1,8 +1,10 @@
 import React from "react";
 import { Link, useLoaderData } from "react-router-dom";
+import { DynamicTitle } from "../../DynamicTitle/DynamicTitle";
 import Service from "./Services";
 
 const AllServices = () => {
+  DynamicTitle("Services");
   const services = useLoaderData();
   // console.log(services);
   return (

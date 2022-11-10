@@ -1,8 +1,10 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useLoaderData } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthProvider";
+import { DynamicTitle } from "../../DynamicTitle/DynamicTitle";
 
 const MyReviews = () => {
+  DynamicTitle("My-Reviews");
   const { user } = useContext(AuthContext);
   const [reviews, setReviews] = useState([]);
   console.log(reviews);
@@ -17,7 +19,7 @@ const MyReviews = () => {
       .then((data) => setReviews(data));
   }, [user?.email]);
   return (
-    <div>
+    <div className=" w-11/12 mx-auto">
       {reviews.map((review) => (
         <div
           key={review._id}

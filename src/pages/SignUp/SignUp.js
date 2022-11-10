@@ -1,9 +1,11 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthProvider";
+import { DynamicTitle } from "../../DynamicTitle/DynamicTitle";
 // import { AuthContext } from "../../contexts/AuthProvider";
 
 const SignUp = () => {
+  DynamicTitle("SignUp");
   const { createUser } = useContext(AuthContext);
 
   const handleSubmit = (e) => {

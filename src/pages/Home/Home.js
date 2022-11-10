@@ -1,19 +1,26 @@
 import React from "react";
 import { Link, useLoaderData } from "react-router-dom";
+import { DynamicTitle } from "../../DynamicTitle/DynamicTitle";
 import Service from "../AllServices/Services";
 import Gallery from "../Gallery/Gallery";
+import { PhotoProvider, PhotoView } from "react-photo-view";
 
 const Home = () => {
+  DynamicTitle("Photo-Review");
   const services = useLoaderData();
   // console.log(services);
   return (
     <>
       <div>
-        <img
-          className=""
-          src="https://img.freepik.com/free-photo/young-asian-man-with-camera-isolated-white-background-photographer-concept_231208-3767.jpg?w=2000"
-          alt=""
-        />
+        <PhotoProvider>
+          <PhotoView src="https://img.freepik.com/free-photo/young-asian-man-with-camera-isolated-white-background-photographer-concept_231208-3767.jpg?w=2000">
+            <img
+              className=""
+              src="https://img.freepik.com/free-photo/young-asian-man-with-camera-isolated-white-background-photographer-concept_231208-3767.jpg?w=2000"
+              alt=""
+            />
+          </PhotoView>
+        </PhotoProvider>
       </div>
       <h1 className=" text-violet-500 text-2xl ml-6 font-bold">
         Photographer Services:
