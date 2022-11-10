@@ -9,7 +9,7 @@ const AddService = () => {
     event.preventDefault();
     console.log(user);
 
-    fetch("https://photographer-server-eta.vercel.app/services", {
+    fetch("http://localhost:5000/services", {
       method: "POST",
       headers: {
         "content-type": "application/json",

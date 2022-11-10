@@ -20,22 +20,18 @@ export const router = createBrowserRouter([
       {
         path: "/",
         element: <Home></Home>,
-        loader: () =>
-          fetch("https://photographer-server-eta.vercel.app/services-home"),
+        loader: () => fetch("http://localhost:5000/services-home"),
       },
       {
         path: "/services",
         element: <AllServices></AllServices>,
-        loader: () =>
-          fetch("https://photographer-server-eta.vercel.app/services"),
+        loader: () => fetch("http://localhost:5000/services"),
       },
       {
         path: "/services/:id",
         element: <DetailsPage></DetailsPage>,
         loader: ({ params }) =>
-          fetch(
-            `https://photographer-server-eta.vercel.app/services/${params.id}`
-          ),
+          fetch(`http://localhost:5000/services/${params.id}`),
       },
       {
         path: "/blogs",

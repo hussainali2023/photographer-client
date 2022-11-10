@@ -13,7 +13,7 @@ const Review = ({ service }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    fetch("https://photographer-server-eta.vercel.app/reviews", {
+    fetch("http://localhost:5000/reviews", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -42,7 +42,7 @@ const Review = ({ service }) => {
   // console.log(`http:localhost:5000/reviews/${shortName}`);
 
   useEffect(() => {
-    fetch(`https://photographer-server-eta.vercel.app/reviews/`)
+    fetch(`http://localhost:5000/reviews/`)
       .then((res) => res.json())
       .then((data) => setReviews(data));
   }, [shortName]);

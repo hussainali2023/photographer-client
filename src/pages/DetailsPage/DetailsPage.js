@@ -3,6 +3,7 @@ import { Link, useLoaderData } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthProvider";
 import { DynamicTitle } from "../../DynamicTitle/DynamicTitle";
 import Review from "../Review/Review";
+import { PhotoProvider, PhotoView } from "react-photo-view";
 
 const DetailsPage = () => {
   DynamicTitle("Details");
@@ -15,11 +16,15 @@ const DetailsPage = () => {
         <div className="max-w-lg p-4 shadow-md dark:bg-gray-900 dark:text-gray-100 rounded-md">
           <div className="space-y-4">
             <div className="space-y-2">
-              <img
-                src={service.photo}
-                alt=""
-                className="block object-cover object-center w-full rounded-md h-72 dark:bg-gray-500"
-              />
+              <PhotoProvider>
+                <PhotoView src={service.photo}>
+                  <img
+                    src={service.photo}
+                    alt=""
+                    className="block object-cover object-center w-full rounded-md h-72 dark:bg-gray-500"
+                  />
+                </PhotoView>
+              </PhotoProvider>
             </div>
             <div className="space-y-2">
               <a rel="noopener noreferrer" href="#" className="block">

@@ -31,7 +31,7 @@ const Login = () => {
         alert("Congratulations Login Successfull");
 
         // jwt token
-        fetch("https://photographer-server-eta.vercel.app/jwt", {
+        fetch("http://localhost:5000/jwt", {
           method: "POST",
           headers: {
             "content-type": "application/json",
