@@ -1,6 +1,6 @@
 import { GoogleAuthProvider } from "firebase/auth";
 import React, { useContext } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthProvider";
 
 const Login = () => {
@@ -17,13 +17,31 @@ const Login = () => {
     const password = form.password.value;
     // console.log(email, password);
     signInUser(email, password)
-      .then((userCredential) => {
+      .then((result) => {
         // Signed in
-        const user = userCredential.user;
-        console.log(user);
+        const user = result.user;
+
+        const currentUser = {
+          email: user.email,
+        };
+        console.log(currentUser);
         alert("Congratulations Login Successfull");
-        navigate(from, { replace: true });
-        form.reset();
+
+        // jwt token
+        fetch("https://photographer-server-eta.vercel.app/jwt", {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(currentUser),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data);
+            localStorage.setItem("token", data.token);
+            navigate(from, { replace: true });
+            form.reset();
+          });
       })
 
       .catch((error) => {

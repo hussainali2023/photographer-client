@@ -8,7 +8,11 @@ const MyReviews = () => {
   console.log(reviews);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/reviews/${user?.email}`)
+    fetch(`https://photographer-server-eta.vercel.app/reviews/${user?.email}`, {
+      headers: {
+        authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    })
       .then((res) => res.json())
       .then((data) => setReviews(data));
   }, [user?.email]);
