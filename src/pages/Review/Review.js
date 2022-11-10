@@ -3,8 +3,13 @@ import { Link, useLoaderData } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthProvider";
 
 const Review = ({ service }) => {
+  const { shortName } = service;
+  // console.log(service);
   const { user } = useContext(AuthContext);
-  const [users, setUsers] = useState({});
+  const [users, setUsers] = useState([]);
+  const [reviews, setReviews] = useState([]);
+  // console.log(users);
+  console.log(reviews);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -30,17 +35,20 @@ const Review = ({ service }) => {
     const value = e.target.value;
     const newUsers = { ...users };
     newUsers[field] = value;
-    console.log(newUsers);
+    // console.log(newUsers);
     setUsers(newUsers);
   };
 
-  //   useEffect(() => {
-  //     fetch(`http://localhost:5000/reviews/${user?.email}`)
-  //       .then((res) => res.json())
-  //       .then((data) => setUsers(data));
-  //   }, [user?.email]);
+  console.log(`http:localhost:5000/reviews/${shortName}`);
 
-  console.log(users);
+  useEffect(() => {
+    fetch(`http://localhost:5000/reviews/${shortName}`)
+      .then((res) => res.json())
+      .then((data) => setReviews(data));
+  }, [shortName]);
+
+  // console.log(users);
+  // console.log(reviews);
 
   return (
     <div>
@@ -103,14 +111,14 @@ const Review = ({ service }) => {
               </div>
               <div className="mb-3">
                 <label className="block uppercase text-gray-700 text-xs font-bold mb-2">
-                  Service Name
+                  Short Name
                 </label>
                 <input
                   onBlur={handleInput}
                   type="text"
-                  name="serviceName"
-                  id="serviceName"
-                  defaultValue={service.serviceName}
+                  name="serviceId"
+                  id="serviceId"
+                  defaultValue={shortName}
                   className="border-0 px-3 py-3 rounded text-sm shadow w-3/4
                     bg-gray-300 placeholder-black text-gray-800 outline-none focus:bg-gray-400"
                   placeholder=" "
@@ -157,32 +165,36 @@ const Review = ({ service }) => {
           </div>
         )}
       </div>
-      <div className="container flex flex-col w-full max-w-lg p-6 mx-auto divide-y rounded-md divide-gray-700 dark:bg-gray-900 dark:text-gray-100">
-        <div className="flex justify-between p-4">
-          <div className="flex space-x-4">
-            <div>
-              <img
-                src={users.photo}
-                alt=""
-                className="object-cover w-12 h-12 rounded-full dark:bg-gray-500"
-              />
+      <div>
+        {reviews.map((review) => (
+          <div className="container flex flex-col w-full max-w-lg p-6 mx-auto divide-y rounded-md divide-gray-700 dark:bg-gray-900 dark:text-gray-100">
+            <div className="flex justify-between p-4">
+              <div className="flex space-x-4">
+                <div>
+                  <img
+                    src={review.photoURL}
+                    alt=""
+                    className="object-cover w-12 h-12 rounded-full dark:bg-gray-500"
+                  />
+                </div>
+                <div>
+                  <h4 className="font-bold">{review.name}</h4>
+                </div>
+              </div>
+              <div className="flex items-center space-x-2 dark:text-yellow-500">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 512 512"
+                  className="w-5 h-5 fill-current"
+                ></svg>
+                <span className="text-xl font-bold">4.5</span>
+              </div>
             </div>
-            <div>
-              <h4 className="font-bold">{users.name}</h4>
+            <div className="p-4 space-y-2 text-sm dark:text-gray-400">
+              <p>{review.message}</p>
             </div>
           </div>
-          <div className="flex items-center space-x-2 dark:text-yellow-500">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 512 512"
-              className="w-5 h-5 fill-current"
-            ></svg>
-            <span className="text-xl font-bold">4.5</span>
-          </div>
-        </div>
-        <div className="p-4 space-y-2 text-sm dark:text-gray-400">
-          <p>{users.message}</p>
-        </div>
+        ))}
       </div>
     </div>
   );
