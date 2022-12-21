@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { toast } from "react-hot-toast";
 import { useLoaderData } from "react-router-dom";
 
 const UpdateReview = () => {
@@ -19,11 +20,11 @@ const UpdateReview = () => {
       .then((res) => res.json())
       .then((data) => {
         if (data.modifiedCount > 0) {
-          alert("User updated");
+          toast.success("Your Review updated successfully");
         } else {
-          alert("At least update one");
+          toast.error("At least update one");
         }
-        console.log(data);
+        // console.log(data);
       });
   };
 

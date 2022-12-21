@@ -52,7 +52,7 @@ const Login = () => {
         const errorCode = error.code;
         const errorMessage = error.message;
         toast.error(errorMessage);
-        console.log(errorMessage);
+        // console.log(errorMessage);
       })
       .finally(() => {});
   };
@@ -63,15 +63,17 @@ const Login = () => {
       .then((userCredential) => {
         // Signed in
         const user = userCredential.user;
-        console.log(user);
+        // console.log(user);
         toast.success("Congratulations Login Successfull");
+        // navigate("/");
         navigate(from, { replace: true });
       })
 
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
-        console.log(errorMessage);
+        toast.error(errorMessage);
+        // console.log(errorMessage);
       });
   };
 

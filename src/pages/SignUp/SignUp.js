@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { toast } from "react-hot-toast";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthProvider";
 import { DynamicTitle } from "../../DynamicTitle/DynamicTitle";
 // import { AuthContext } from "../../contexts/AuthProvider";
@@ -9,27 +9,33 @@ const SignUp = () => {
   DynamicTitle("SignUp");
   const { createUser } = useContext(AuthContext);
 
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const form = e.target;
     const name = form.name.value;
     const email = form.email.value;
     const password = form.password.value;
-    console.log(name, email, password);
+    // console.log(name, email, password);
 
     createUser(email, password)
       .then((userCredential) => {
         // Signed in
         const user = userCredential.user;
-        console.log(user);
+        // console.log(user);
         toast.success("Congratulations You are successfully Registered");
         form.reset();
+        navigate(from, { replace: true });
         // ...
       })
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
-        console.log(errorMessage);
+        toast.error(errorMessage);
+        // console.log(errorMessage);
         // ..
       });
   };

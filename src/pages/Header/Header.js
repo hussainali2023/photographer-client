@@ -1,4 +1,5 @@
 import React, { useContext, useState } from "react";
+import { toast } from "react-hot-toast";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthProvider";
 
@@ -18,7 +19,7 @@ const Header = () => {
   // };
 
   const handleLogOut = () => {
-    logOut().then().catch();
+    logOut().then(toast.success("Logout Successful")).catch();
   };
 
   return (
@@ -28,7 +29,7 @@ const Header = () => {
           <div>
             <div className="flex items-center justify-between py-3 md:py-5 md:block">
               <Link to={"/"}>
-                <h2 className="text-2xl font-bold">Photo Review</h2>
+                <h2 className="text-2xl font-bold">Re-Photo</h2>
               </Link>
               <div className="md:hidden">
                 <button

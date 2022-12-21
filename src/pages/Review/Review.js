@@ -24,7 +24,7 @@ const Review = ({ service }) => {
       .then((res) => res.json())
       .then((data) => {
         if (data.acknowledged) {
-          toast.success("User added successfully");
+          toast.success("Review added successfully");
           e.target.reset();
         }
       });

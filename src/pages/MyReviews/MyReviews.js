@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
+import { toast } from "react-hot-toast";
 import { Link, useLoaderData } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthProvider";
 import { DynamicTitle } from "../../DynamicTitle/DynamicTitle";
@@ -7,7 +8,7 @@ const MyReviews = () => {
   DynamicTitle("My-Reviews");
   const { user } = useContext(AuthContext);
   const [reviews, setReviews] = useState([]);
-  console.log(reviews);
+  // console.log(reviews);
 
   useEffect(() => {
     fetch(`https://photographer-server-eta.vercel.app/reviews/${user?.email}`, {
@@ -32,7 +33,7 @@ const MyReviews = () => {
           setReviews(remaingReviews);
         }
       });
-    alert("Review deleted successfully");
+    toast.success("Review deleted successfully");
   };
   return (
     <div className=" w-11/12 mx-auto my-6">
