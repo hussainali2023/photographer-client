@@ -1,5 +1,6 @@
 import { GoogleAuthProvider } from "firebase/auth";
 import React, { useContext } from "react";
+import { toast } from "react-hot-toast";
 import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthProvider";
 import { DynamicTitle } from "../../DynamicTitle/DynamicTitle";
@@ -28,7 +29,7 @@ const Login = () => {
           email: user.email,
         };
         console.log(currentUser);
-        alert("Congratulations Login Successfull");
+        toast.success("Congratulations Login Successfull");
 
         // jwt token
         fetch("https://photographer-server-eta.vercel.app/jwt", {
@@ -50,6 +51,7 @@ const Login = () => {
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
+        toast.error(errorMessage);
         console.log(errorMessage);
       })
       .finally(() => {});
@@ -62,7 +64,7 @@ const Login = () => {
         // Signed in
         const user = userCredential.user;
         console.log(user);
-        alert("Congratulations Login Successfull");
+        toast.success("Congratulations Login Successfull");
         navigate(from, { replace: true });
       })
 

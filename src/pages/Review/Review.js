@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
+import { toast } from "react-hot-toast";
 import { Link, useLoaderData } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthProvider";
 
@@ -23,7 +24,7 @@ const Review = ({ service }) => {
       .then((res) => res.json())
       .then((data) => {
         if (data.acknowledged) {
-          alert("User added successfully");
+          toast.success("User added successfully");
           e.target.reset();
         }
       });

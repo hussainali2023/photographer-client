@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { toast } from "react-hot-toast";
 import { DynamicTitle } from "../../DynamicTitle/DynamicTitle";
 
 const AddService = () => {
@@ -19,7 +20,7 @@ const AddService = () => {
       .then((res) => res.json())
       .then((data) => {
         if (data.acknowledged) {
-          alert("User added successfully");
+          toast.success("User added successfully");
           event.target.reset();
         }
       });

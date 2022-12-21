@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import { toast } from "react-hot-toast";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthProvider";
 import { DynamicTitle } from "../../DynamicTitle/DynamicTitle";
@@ -21,7 +22,7 @@ const SignUp = () => {
         // Signed in
         const user = userCredential.user;
         console.log(user);
-        alert("Congratulations You are successfully Registered");
+        toast.success("Congratulations You are successfully Registered");
         form.reset();
         // ...
       })
